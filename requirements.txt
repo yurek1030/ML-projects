@@ -9,4 +9,5 @@ Flask
 ipykernel
 catboost
 xgboost
+dill
 -e .
