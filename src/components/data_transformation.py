@@ -72,7 +72,6 @@ class DataTransformation:
             preprocessor_obj = self.get_data_transformer_object()    # Get the preprocessor object
             
             target_column_name = 'math_score'                        # Define the target column name
-            numerical_features = ['writing_score', 'reading_score']  # List of numerical feature columns
             
             input_features_train_df = train_df.drop(columns=[target_column_name], axis=1)  # Drop target column from training data
             target_feature_train_df = train_df[target_column_name]                         # Extract target column from training data
