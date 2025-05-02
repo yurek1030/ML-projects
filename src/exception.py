@@ -3,16 +3,16 @@ from src.logger import logging
 
 def error_message_detail(error, error_detail: sys):
     """
-    Ця функція приймає помилку та її деталі і повертає відформатоване повідомлення про помилку.
-    Вона витягує ім'я файлу та номер рядка, де сталася помилка, і включає повідомлення про помилку.
+    This function takes an error and its details and returns a formatted error message.
+    It extracts the filename and line number where the error occurred and includes the error message.
     """
-    # Отримуємо об'єкт traceback з деталей помилки
+    # Get the traceback object from the error details
     _, _, exc_tb = error_detail.exc_info()
     
-    # Отримуємо ім'я файлу, в якому сталася помилка
+    # Get the filename where the error occurred
     file_name = exc_tb.tb_frame.f_code.co_filename
     
-    # Форматуємо повідомлення про помилку з ім'ям файлу, номером рядка та описом помилки
+    # Format the error message with the filename, line number, and error description
     error_message = f"Error occurred in script: [{file_name}] at line number: [{exc_tb.tb_lineno}] error message: [{str(error)}]"
         
     return error_message
@@ -20,19 +20,19 @@ def error_message_detail(error, error_detail: sys):
 
 class CustomException(Exception):
     """
-    Клас користувацького виключення, який розширює базовий клас Exception.
-    Надає детальне повідомлення про помилку, включаючи ім'я файлу та номер рядка.
+    A custom exception class that extends the base Exception class.
+    Provides a detailed error message including the filename and line number.
     """
     def __init__(self, error_message, error_detail: sys):
         """
-        Ініціалізуємо CustomException з повідомленням про помилку та деталями помилки.
+        Initialize CustomException with an error message and error details.
         """
         super().__init__(error_message)
-        # Генеруємо детальне повідомлення про помилку за допомогою допоміжної функції
+        # Generate a detailed error message using the helper function
         self.error_message = error_message_detail(error_message, error_detail)
         
     def __str__(self):
         """
-        Повертає детальне повідомлення про помилку, коли виключення перетворюється на рядок.
+        Returns the detailed error message when the exception is converted to a string.
         """
         return self.error_message

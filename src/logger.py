@@ -2,21 +2,21 @@ import logging
 import os
 from datetime import datetime
 
-# Ім'я файлу для логів, яке базується на поточній даті
+# Log file name based on the current date
 LOG_FILE = f"{datetime.now().strftime('%Y-%m-%d')}.log"
 
-# Шлях до папки для збереження логів
-logs_path = os.path.join(os.getcwd(), "logs", LOG_FILE)
+# Path to the folder for saving logs
+logs_path = os.path.join(os.getcwd(), "logs")
 
-# Створення папки для логів, якщо вона не існує
+# Create the logs folder if it does not exist
 os.makedirs(logs_path, exist_ok=True)
 
-# Повний шлях до файлу логів
+# Full path to the log file
 LOG_FILE_PATH = os.path.join(logs_path, LOG_FILE)
 
-# Налаштування базового конфігуратора для логування
+# Configure the basic settings for logging
 logging.basicConfig(
-    filename=LOG_FILE_PATH,  # Файл, куди будуть записуватись логи
-    format='[ %(asctime)s ] %(lineno)d %(name)s - %(levelname)s - %(message)s',  # Формат повідомлень
-    level=logging.INFO,  # Рівень логування
-)   
+    filename=LOG_FILE_PATH,  # File where logs will be written
+    format='[ %(asctime)s ] %(lineno)d %(name)s - %(levelname)s - %(message)s',  # Message format
+    level=logging.INFO,  # Logging level
+) 
